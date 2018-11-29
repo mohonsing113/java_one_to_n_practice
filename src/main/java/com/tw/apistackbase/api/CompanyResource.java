@@ -2,6 +2,7 @@ package com.tw.apistackbase.api;
 
 import com.tw.apistackbase.core.CompanyRepository;
 import com.tw.apistackbase.core.Company;
+import com.tw.apistackbase.core.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,7 @@ public class CompanyResource {
 
     @PostMapping(produces = {"application/json"})
     public void add(@RequestBody Company company) {
+        company.getEmployees().stream().forEach(employee -> employee.setCompany(company));
         companyRepository.save(company);
     }
 }

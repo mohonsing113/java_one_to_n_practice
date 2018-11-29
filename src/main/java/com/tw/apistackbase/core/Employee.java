@@ -1,5 +1,7 @@
 package com.tw.apistackbase.core;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +16,8 @@ public class Employee {
     private String name;
     private int age;
 
-    @ManyToOne()
+    @JsonIgnore
+    @ManyToOne
     private Company company;
 
     public Company getCompany() {
@@ -26,11 +29,6 @@ public class Employee {
     }
 
     public Employee() {}
-
-    public Employee(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
 
     public String getName() {
         return name;
